@@ -1,5 +1,8 @@
 {
   "name": "pokedex",
-  "app_id": "",
-  "type": "ionic-angular"
+  "app_id": "38bf226c",
+  "type": "ionic-angular",
+  "integrations": {
+    "cordova": {}
+  }
 }

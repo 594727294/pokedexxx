@@ -1,14 +1,49 @@
-<ion-header>
-  <ion-navbar>
-    <ion-title>
-      Ionic Blank
-    </ion-title>
-  </ion-navbar>
-</ion-header>
+<ion-content>
+  <div class="main">
+    <h1 class="titulo">~~~~~</h1>
+    <br>
+    <div class="formulario">
+        <ion-item>
+          <ion-label>Elige tu pokèmon</ion-label>
+          <ion-select [(ngModel)]="pokemonRequest" (ngModelChange)="preparaRequest(pokemonRequest=$event)">
+            <ion-option *ngFor="let list of pokelist.results; let i = index" value="{{i+1}}">{{list.name}}</ion-option>
+          </ion-select>
+        </ion-item>
+        <div class="resultado" *ngIf="isSelected">
+          <p>Resultado:</p>
+          <p class="nombre">
+            {{pokemon.name}}
+          </p>
+          <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{{pokemon.id}}.png" alt="">
+          <div class="datos">
+            <p><b>Altura:</b> {{pokemon.height}}</p>
+            <p><b>Peso:</b> {{pokemon.weight}}</p>
+            <p><b>Experiencia Base:</b> {{pokemon.base_experience}}</p>
+          </div>
+          <ion-grid>
+              <ion-row>
+                <ion-col>
+                  <b>Habilidades</b>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col *ngFor="let item of pokemon.abilities" >
+                  {{item.ability.name}}
+                </ion-col>
 
-<ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+              </ion-row>
+            </ion-grid>
+        </div>
+        <div class="sinResultado" *ngIf="!isSelected">
+          <h1>Hola Amiguito!<br>bienvenido al pokedez!
+          </h1>
+        </div>
+    </div>
+  </div>
 </ion-content>
+<ion-footer>
+  <span></span>
+</ion-footer>
+<div class="modalLODER" [ngClass]="isLoading ? 'active' : ''">
+  LOADIN
+</div>
