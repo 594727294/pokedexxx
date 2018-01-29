@@ -17,18 +17,26 @@ page-home {
         padding:1.6rem;
         background:white;
       }
+      
       .resultado{
         background:white;
         text-align: center;
         padding:1rem;
         .nombre{
           font-size:28px; 
+          span{
+            font-style: italic;
+            font-size: 16px;
+          }
         }
         .datos{
           text-align: left;
           p{
             margin:0;
             padding:0;
+          }
+          p.description{
+            text-align:center;
           }
         }
         ion-grid{

@@ -30,6 +30,19 @@ export class PokellamadaProvider {
         console.log(err);
       });
     });
+    
+  }
+
+  getPokeDesc(elegido){
+    let url = 'https://pokeapi.co/api/v2/pokemon-species/'+elegido;
+    return new Promise(resolve => {
+      this.http.get(url).subscribe(data => {
+        resolve(data);
+        //console.log(data);
+      }, err => {
+        console.log(err);
+      });
+    });
   }
 
 }

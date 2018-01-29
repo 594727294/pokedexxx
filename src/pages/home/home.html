@@ -3,40 +3,43 @@
     <h1 class="titulo">~~~~~</h1>
     <br>
     <div class="formulario">
-        <ion-item>
+        <ion-item *ngIf="loadList">
           <ion-label>Elige tu pokèmon</ion-label>
           <ion-select [(ngModel)]="pokemonRequest" (ngModelChange)="preparaRequest(pokemonRequest=$event)">
-            <ion-option *ngFor="let list of pokelist.results; let i = index" value="{{i+1}}">{{list.name}}</ion-option>
+            <ion-option  *ngFor="let list of pokelist.results; let i = index" value="{{i+1}}">{{list.name}}</ion-option>
           </ion-select>
         </ion-item>
-        <div class="resultado" *ngIf="isSelected">
+        <div class="resultado" *ngIf="doneLoading">
           <p>Resultado:</p>
-          <p class="nombre">
-            {{pokemon.name}}
-          </p>
-          <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{{pokemon.id}}.png" alt="">
+          <p class="nombre">{{pokemon.name}}<br><span>{{pokedesc.genera[1].genus}}</span></p>
+          <img *ngIf="loadSingle"  src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{{pokemon.id}}.png" alt="">
           <div class="datos">
+            <p class="description">{{pokedesc.flavor_text_entries[3].flavor_text}}</p>
+            <br>
+            <p class="divisor">~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*</p>
+            <br>
             <p><b>Altura:</b> {{pokemon.height}}</p>
             <p><b>Peso:</b> {{pokemon.weight}}</p>
             <p><b>Experiencia Base:</b> {{pokemon.base_experience}}</p>
+            <br>
+            <p class="divisor">~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*</p>
+            <br>
           </div>
           <ion-grid>
-              <ion-row>
-                <ion-col>
-                  <b>Habilidades</b>
-                </ion-col>
-              </ion-row>
-              <ion-row>
-                <ion-col *ngFor="let item of pokemon.abilities" >
-                  {{item.ability.name}}
-                </ion-col>
-
-              </ion-row>
-            </ion-grid>
+            <ion-row>
+              <ion-col>
+                <b>Habilidades</b>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col *ngFor="let item of pokemon.abilities" >
+                {{item.ability.name}}
+              </ion-col>
+            </ion-row>
+          </ion-grid>
         </div>
         <div class="sinResultado" *ngIf="!isSelected">
-          <h1>Hola Amiguito!<br>bienvenido al pokedez!
-          </h1>
+          <h1>Hola Amiguito!<br>bienvenido al pokedez!</h1>
         </div>
     </div>
   </div>
